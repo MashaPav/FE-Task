@@ -1,12 +1,44 @@
+.Main {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 300px;
+  padding: 10px;
+  justify-content: space-between;
+  margin: 1em;
+  font-family: Sans-serif	;
+}
 .App {
-  text-align: center;
+  flex-direction: column;
+  height: 290px;
+  align-content: center;
+  justify-content: space-between;
 }
 
+.Button {
+  background-color: #A13435;
+  opacity: 70%;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
 
+.custom-select {
+  position: relative;
+  display: block;
+  font-size: 14px;
+  color: #000000;
+  padding: 5px;
+}
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
