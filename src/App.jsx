@@ -20,9 +20,7 @@ function App() {
           <ReactRoundedImage image={profile} roundedSize="0" imageWidth="110" imageHeight="110" margin="3"alt={user.name} />
           <span style={{padding: '3px'}}>{user.name}</span>
           <button className="Button" onClick={handleClick}>Settings</button>
-          <p> Select tenant : </p>
-          <select className="custom-select">{user.tenants.map(tenant => <option key={tenant.tenantId}>{tenant.tenantId}</option>)}</select>
-        </div>
+          </div>
       )}
   </div>
   );
