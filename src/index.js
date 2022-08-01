@@ -8,7 +8,7 @@ import { FronteggProvider } from '@frontegg/react';
 import { BrowserRouter } from 'react-router-dom';
 
 const contextOptions = {
-  baseUrl: 'https://app-97c4cd8jxhtn.frontegg.com',
+  baseUrl: 'https://mashatest.frontegg.com',
 };
 
 ReactDOM.render(
