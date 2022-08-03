@@ -1,28 +1,47 @@
 import './App.css';
-
-import React from 'react';
-import { useAuth, AdminPortal } from '@frontegg/react'
-import profile from './lucky-cat.jpeg';
-import ReactRoundedImage from "react-rounded-image";
-
-const handleClick = () => {
-  AdminPortal.show();
-};
+import { useEffect } from 'react';
+import { ContextHolder } from '@frontegg/rest-api';
+import { useAuth, useLoginWithRedirect } from "@frontegg/react";
 
 function App() {
   const { user, isAuthenticated } = useAuth();
+  const loginWithRedirect = useLoginWithRedirect();
 
+  // Uncomment this to redirect to login automatically
+  useEffect(() => {
+    if (!isAuthenticated) {
+  loginWithRedirect();
+    }
+  }, [isAuthenticated, loginWithRedirect]);
+
+  const logout = () => {
+    const baseUrl = ContextHolder.getContext().baseUrl;
+    window.location.href = `${baseUrl}/oauth/logout?post_logout_redirect_uri=${window.location}`;
+  };
 
   return (
-  <div>
-      {isAuthenticated && (
-        <div className="Main App">
-          <ReactRoundedImage image={profile} roundedSize="0" imageWidth="110" imageHeight="110" margin="3"alt={user.name} />
-          <span style={{padding: '3px'}}>{user.name}</span>
-          <button className="Button" onClick={handleClick}>Settings</button>
+    <div className="App">
+      { isAuthenticated ? (
+        <div>
+          <div>
+            <img src={user?.profilePictureUrl} alt={user?.name}/>
           </div>
+          <div>
+            <span>Logged in as: {user?.name}</span>
+          </div>
+          <div>
+            <button onClick={() => alert(user.accessToken)}>What is my access token?</button>
+          </div>
+          <div>
+            <button onClick={() => logout()}>Click to logout</button>
+          </div>
+        </div>
+      ) : (
+        <div>
+          <button onClick={() => loginWithRedirect()}>Click me to login</button>
+        </div>
       )}
-  </div>
+    </div>
   );
 }
 
